@@ -17,9 +17,35 @@ export class ShopProvider extends Component {
     isMenuOpen: false,
   };
 
+  createCheckout = async () => {};
+
+  fetchCheckout = async () => {};
+
+  addItemToCheckout = async () => {};
+
+  removeLineItem = async (lineItemIdsToRemove) => {};
+
+  fetchAllProducts = async () => {};
+
+  // The name of the product that is compatible with links
+  fetchProductWithHandle = async (handle) => {};
+
+  closeCart = () => {};
+
+  openCart = () => {};
+
+  closeMenu = () => {};
+
+  openMenu = () => {};
+
   render() {
-    return <div>shopContext</div>;
+    return <ShopContext.Provider>{this.props.children}</ShopContext.Provider>;
   }
 }
+
+// This is what actually consumes the context
+const ShopConsumer = ShopContext.Consumer;
+
+export { ShopConsumer, ShopContext };
 
 export default ShopProvider;
