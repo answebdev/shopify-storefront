@@ -25,10 +25,16 @@ export class ShopProvider extends Component {
 
   removeLineItem = async (lineItemIdsToRemove) => {};
 
-  fetchAllProducts = async () => {};
+  fetchAllProducts = async () => {
+    const products = await client.product.fetchAll();
+    this.setState({ products: products });
+  };
 
   // The name of the product that is compatible with links
-  fetchProductWithHandle = async (handle) => {};
+  fetchProductWithHandle = async (handle) => {
+    const product = await client.product.fetchByHandle(handle);
+    this.setState({ product: product });
+  };
 
   closeCart = () => {};
 
