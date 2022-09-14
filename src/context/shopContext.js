@@ -54,7 +54,7 @@ export class ShopProvider extends Component {
     this.setState({ checkout: checkout });
   };
 
-  fetchCheckout = async (checkoutId) => {
+  fetchCheckout = (checkoutId) => {
     client.checkout.fetch(checkoutId).then((checkout) => {
       this.setState({ checkout: checkout });
     });
@@ -86,7 +86,23 @@ export class ShopProvider extends Component {
   render() {
     // console.log(this.state.checkout);
 
-    return <ShopContext.Provider>{this.props.children}</ShopContext.Provider>;
+    return (
+      <ShopContext.Provider
+        value={{
+          ...this.state,
+          fetchAllProducts: this.fetchAllProducts,
+          fetchProductWithHandle: this.fetchProductWithHandle,
+          closeCart: this.closeCart,
+          openCart: this.openCart,
+          closeMenu: this.closeMenu,
+          openMenu: this.openMenu,
+          addItemToCheckout: this.addItemToCheckout,
+          removeLineItem: this.removeLineItem,
+        }}
+      >
+        {this.props.children}
+      </ShopContext.Provider>
+    );
   }
 }
 
