@@ -10,7 +10,10 @@ const Home = () => {
     fetchAllProducts();
   }, [fetchAllProducts]);
 
-  if (!products) return <div>loading...</div>;
+  // if (!products) return <div>loading...</div>;
+
+  // Loader: https://cssloaders.github.io/
+  if (!products) return <span className='loader'></span>;
 
   return (
     <div>

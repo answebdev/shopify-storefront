@@ -12,7 +12,10 @@ const ProductPage = () => {
     fetchProductWithHandle(handle);
   }, [fetchProductWithHandle, handle]);
 
-  if (!product.title) return <div>Loading...</div>;
+  //  if (!product.title) return <div>Loading...</div>;
+
+  // Loader: https://cssloaders.github.io/
+  if (!product.title) return <span className='loader'></span>;
 
   return (
     <div>
