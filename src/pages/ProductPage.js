@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { Box, Grid, Image, Text, Button, Heading } from '@chakra-ui/react';
 import { ShopContext } from '../context/shopContext';
 
 const ProductPage = () => {
@@ -18,9 +19,21 @@ const ProductPage = () => {
   if (!product.title) return <span className='loader'></span>;
 
   return (
-    <div>
-      <h1>{product.title}</h1>
-    </div>
+    <Box>
+      <Grid templateColumns='repeat(2,1fr)'>
+        <Image src={product.images[0].src} />
+        <Box>
+          <Heading>{product.title}</Heading>
+          <Text>${product.variants[0].price}</Text>
+          <Text>{product.description}</Text>
+
+          {/* Send the particular item (product.variants[0].id) immediately when button is clicked, and send one of them (1), i.e., add 1 to the cart */}
+          <Button onClick={() => addItemToCheckout(product.variants[0].id, 1)}>
+            Add To Cart
+          </Button>
+        </Box>
+      </Grid>
+    </Box>
   );
 };
 

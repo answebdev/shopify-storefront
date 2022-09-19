@@ -60,9 +60,31 @@ export class ShopProvider extends Component {
     });
   };
 
-  addItemToCheckout = async () => {};
+  addItemToCheckout = async (variantId, quantity) => {
+    const lineItemsToAdd = [
+      {
+        variantId: variantId,
+        quantity: parseInt(quantity, 10), // The 10 means the number is a base 10
+      },
+    ];
 
-  removeLineItem = async (lineItemIdsToRemove) => {};
+    const checkout = await client.checkout.addLineItems(
+      this.state.checkout.id,
+      lineItemsToAdd
+    );
+    this.setState({ checkout: checkout });
+
+    // Open the cart whenever a new line item is added
+    this.openCart();
+  };
+
+  removeLineItem = async (lineItemIdsToRemove) => {
+    const checkout = await client.checkout.removeLineItems(
+      this.state.checkout.id,
+      lineItemIdsToRemove
+    );
+    this.setState({ checkout: checkout });
+  };
 
   fetchAllProducts = async () => {
     const products = await client.product.fetchAll();
