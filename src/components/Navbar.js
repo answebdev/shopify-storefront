@@ -17,6 +17,7 @@ const Navbar = () => {
       <Icon fill='white' cursor='pointer' as={MdMenu} w={30} h={30}></Icon>
       <Image src={logo} w={100} h={100} />
       <Icon
+        onClick={() => openCart()}
         fill='white'
         cursor='pointer'
         as={MdShoppingBasket}
