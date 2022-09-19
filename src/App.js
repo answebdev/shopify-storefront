@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import ProductPage from './pages/ProductPage';
 
@@ -9,7 +10,7 @@ function App() {
   return (
     <div className='App'>
       <Router>
-        <p>Navigation</p>
+        <Navbar />
         <Switch>
           <Route path='/products/:handle'>
             <ProductPage />
