@@ -11,7 +11,7 @@ const Home = () => {
     fetchAllProducts();
   }, [fetchAllProducts]);
 
-  console.log(products);
+  // console.log(products);
 
   // if (!products) return <div>loading...</div>;
 
