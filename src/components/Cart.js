@@ -15,6 +15,7 @@ import {
   Text,
   Image,
   Link,
+  Box,
 } from '@chakra-ui/react';
 
 const Cart = () => {
@@ -25,14 +26,19 @@ const Cart = () => {
 
   return (
     <>
-      <Drawer isOpen={isCartOpen} placement='right' onClose={closeCart}>
+      <Drawer
+        isOpen={isCartOpen}
+        placement='right'
+        onClose={closeCart}
+        size='sm'
+      >
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
           <DrawerHeader>Your Shopping Cart</DrawerHeader>
 
           <DrawerBody>
-            {checkout.lineItems &&
+            {checkout.lineItems?.length ? (
               checkout.lineItems.map((item) => (
                 <Grid key={item.id} templateColumns='repeat(4, 1fr)' gap={1}>
                   <Flex alignItems='center' justifyContent='center'>
@@ -51,16 +57,31 @@ const Cart = () => {
                     <Text>{item.variant.price}</Text>
                   </Flex>
                 </Grid>
-              ))}
+              ))
+            ) : (
+              <Box h='100%' w='100%'>
+                <Text
+                  h='100%'
+                  display='flex'
+                  flexDir='column'
+                  justifyContent='center'
+                  alignItems='center'
+                >
+                  Your Cart is Empty!
+                </Text>
+              </Box>
+            )}
           </DrawerBody>
 
-          <DrawerFooter>
-            <Button w='100%'>
-              <Link w='100%' href={checkout.webUrl}>
-                Checkout
-              </Link>
-            </Button>
-          </DrawerFooter>
+          {checkout.lineItems?.length ? (
+            <DrawerFooter>
+              <Button w='100%'>
+                <Link w='100%' href={checkout.webUrl}>
+                  Checkout
+                </Link>
+              </Button>
+            </DrawerFooter>
+          ) : null}
         </DrawerContent>
       </Drawer>
     </>
